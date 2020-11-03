@@ -1,0 +1,30 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/02815327-caa1-4e58-8025-3fe1412e23ee/ # 
+title: log-sapi
+#baseUri: https://api.domain.com/{version}
+version: v1
+protocols: [ HTTPS ] 
+mediaType: application/json
+
+documentation:
+  - !include documentation/doc.raml
+
+uses:
+  security: exchange_modules/13ecf258-fb9f-4dee-b1d3-4626b6c69bc0/library-security/1.0.1/security.raml
+
+resourceTypes:
+  create: !include exchange_modules/13ecf258-fb9f-4dee-b1d3-4626b6c69bc0/library-resource-type/1.0.23/resourceType/create-only-item.raml
+
+types:
+  error: !include exchange_modules/13ecf258-fb9f-4dee-b1d3-4626b6c69bc0/library-error/1.0.9/types/error-log.raml
+
+/log:
+  securedBy: [security.basicAuthentication]
+  type:
+    create:
+      displayName: Insert log in system log
+      errorType: error
+      inputType: error
+      inputExample: 
+      outputType: 
+      outputExample:    
